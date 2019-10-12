@@ -3,7 +3,7 @@ import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
 
-const App = () => (
+const Home = () => (
   <div className='catch-of-the-day'>
     <div className='menu'>
       <Header tagline='Fresh Seafood Market' />
@@ -13,4 +13,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default Home;
