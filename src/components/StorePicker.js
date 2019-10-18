@@ -1,35 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { getFunName } from '../helpers';
 
-const StorePicker = () => {
-  const [form, setValues] = useState({
-    email: ''
-  });
+class StorePicker extends React.Component {
+  myInput = React.createRef();
 
-  const handleInput = event => {
-    setValues({
-      ...form,
-      [event.target.name]: event.target.value
-    });
-  };
-
-  const handleSubmit = event => {
+  goToStore = event => {
     event.preventDefault();
-    console.log(form);
+    const storeName = this.myInput.current.value;
+    this.props.history.push(`/store/${storeName}`);
   };
-  return (
-    <form className='store-selector' onSubmit={handleSubmit}>
-      <h2>Please Enter a Store</h2>
-      <input
-        type='text'
-        required
-        placeholder='Store Name'
-        defaultValue={getFunName()}
-        onChange={handleInput}
-      />
-      <button type='submit'>Visit store ⟶</button>
-    </form>
-  );
-};
+
+  render() {
+    return (
+      <form className='store-selector' onSubmit={this.goToStore}>
+        <h2>Please Enter a Store</h2>
+        <input
+          type='text'
+          ref={this.myInput}
+          required
+          placeholder='Store Name'
+          defaultValue={getFunName()}
+        />
+        <button type='submit'>Visit store ⟶</button>
+      </form>
+    );
+  }
+}
 
 export default StorePicker;
