@@ -1,17 +1,32 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import StorePicker from '../components/StorePicker';
-import Home from '../components/Home';
-import NotFound from '../components/NotFound';
+import Header from '../components/Header';
+import Order from '../components/Order';
+import Inventory from '../components/Inventory';
 
-const App = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path='/' component={StorePicker} />
-      <Route exact path='/store/:storeId' component={Home} />
-      <Route component={NotFound} />
-    </Switch>
-  </BrowserRouter>
-);
+class App extends React.Component {
+  initialState = {
+    fishes: {},
+    order: {},
+  };
+  addFish = fish => {
+    // 1. Take a copy of the existing state
+    const fishes = { ...this.initialState.fishes };
+    // 2. Add our new fish to that fishes variable
+    fishes[`fish${Date.now()}`] = fish;
+    // 3. Set the new fishes object to state
+    this.setState({ fishes });
+  };
+  render() {
+    return (
+      <div className='catch-of-the-day'>
+        <div className='menu'>
+          <Header tagline='Fresh Seafood Market' />
+        </div>
+        <Order />
+        <Inventory addFish={this.addFish} />
+      </div>
+    );
+  }
+}
 
 export default App;
