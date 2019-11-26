@@ -1,7 +1,7 @@
 // let's go!
 import React from 'react';
 import ReactDom from 'react-dom';
-import App from './routes/App';
+import Router from './Routes/Router';
 import './css/style.css';
 
-ReactDom.render(<App />, document.querySelector('#main'));
+ReactDom.render(<Router />, document.querySelector('#main'));
